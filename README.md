@@ -4,8 +4,8 @@ A robustness analysis of FAN ViT models using standard adversarial attacks
 # Dataset Setup :
 - Download the Imagenet-1K dataset from : https://image-net.org/download-images
 - Arrange the images in a folder named "val" inside which each folder will have all the images of that particular class
-- Refer for arranging images : https://pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html
-- This will be our ground truth values
+- Refer this link for arranging images : https://pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html
+- This will be used as ground truth
 
 # Running the Code :
 1. conda create -n <env_name> python=3.9 anaconda
