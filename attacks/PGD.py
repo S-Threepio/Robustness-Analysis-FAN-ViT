@@ -38,7 +38,12 @@ def testPGD(model, device, test_loader, epsilon, steps=10):
     l2_pgd = 0
     linf_pgd = 0
 
+    dataCount = 0
     for data, target in tqdm(test_loader):
+        if dataCount == 1000:
+            break
+        dataCount += 1
+
         # Send the data and label to the device
         data, target = data.to(device), target.to(device)
         # Set requires_grad attribute of tensor. Important for Attack
@@ -71,18 +76,18 @@ def testPGD(model, device, test_loader, epsilon, steps=10):
         ]  # get the index of the max log-probability
         if final_pred.item() != target.item():
             incorrectly_predicted_outputs_after_attack += 1
-            break
+
             # Save some adv examples for visualization later
-            if len(adv_examples) < 10:
-                adv_ex = perturbed_data.squeeze().detach().cpu().numpy()
-                adv_examples.append((init_pred.item(), final_pred.item(), adv_ex))
+            # if len(adv_examples) < 10:
+            #     adv_ex = perturbed_data.squeeze().detach().cpu().numpy()
+            #     adv_examples.append((init_pred.item(), final_pred.item(), adv_ex))
 
     # Calculate final accuracy for this epsilon
     final_acc = incorrectly_predicted_outputs_after_attack / float(
         correctly_predicted_outputs_before_attack
     )
     print(
-        "\nSteps: {}\nAttack Accuracy = (incorrectly predicted labels after attack) / (correctly predicted labels before attack) =  {} / {} = {}".format(
+        "\n\nSteps: {}\nAttack Accuracy = (incorrectly predicted labels after attack) / (correctly predicted labels before attack) =  {} / {} = {}".format(
             steps,
             incorrectly_predicted_outputs_after_attack,
             correctly_predicted_outputs_before_attack,
