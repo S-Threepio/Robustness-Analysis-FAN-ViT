@@ -1,4 +1,9 @@
-# Robustness-Analysis-FAN-ViT
+# Is Attentional Channel Processing Design Required? Comprehensive Analysis Of Robustness Between Vision Transformers And Fully Attentional Networks
+
+## This repository is the official implementation of the following paper- https://arxiv.org/abs/2306.05495
+
+## The Link to the paper: https://arxiv.org/abs/2306.05495
+
 A robustness analysis of FAN ViT models using standard adversarial attacks
 
 # Dataset Setup :
